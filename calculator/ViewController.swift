@@ -25,13 +25,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, layout CollectionViewLayout:
         UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.frame.width - 3 * 10) / 4
+        let width = ((collectionView.frame.width - 10) - 14 * 5) / 4
         return .init(width: width, height: width)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:
         UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 14
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) ->
@@ -39,6 +39,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let cell = caluculator.dequeueReusableCell(withReuseIdentifier: "cellID", for:
             indexPath) as! CaluculatorViewCell
             cell.numberLabel.text = numbers[indexPath.section][indexPath.row]
+            
+            numbers[indexPath.section][indexPath.row].forEach { (numberString) in
+                if "0"..."9" ~= numberString || numberString.description == "." {
+                    cell.numberLabel.backgroundColor = .darkGray
+                } else if numberString == "C" || numberString == "$" || numberString == "%" {
+                    cell.numberLabel.backgroundColor = UIColor.init(white: 1, alpha: 0.7)
+                    cell.numberLabel.textColor = .black
+                }
+        
+            }
             
         return cell
     }
@@ -64,6 +74,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         caluculator.register(CaluculatorViewCell.self, forCellWithReuseIdentifier: "cellID")
         calculatorHeight.constant = view.frame.width * 1.4
         caluculator.backgroundColor = .clear
+        caluculator.contentInset = .init(top: 10, left: 14, bottom: 0, right: 14)
         
         view.backgroundColor = .black
     }
