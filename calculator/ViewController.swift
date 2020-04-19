@@ -113,9 +113,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         switch calculateStatus {
         case .none:
             switch number {
-            case "0"..."9", ".":
+            case "0"..."9":
                 firstNumber += number
                 numberLabel.text = firstNumber
+            case ".":
+                if firstNumber.range(of: ".") == nil {
+                    firstNumber += number
+                    numberLabel.text = firstNumber
+                }
             case "+":
                 calculateStatus = .plus
             case "-":
@@ -133,7 +138,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
             
         case .plus, .minus, .multiplication, .division:
             switch number {
-            case "0"..."9", ".":
+            case "0"..."9":
                 secondNumber += number
                 numberLabel.text = secondNumber
             case "=":
