@@ -117,11 +117,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
                 firstNumber += number
                 numberLabel.text = firstNumber
             case ".":
-                if firstNumber.range(of: ".") != nil {
-                    return
-                } else if firstNumber.count == 0 {
-                    return
-                } else {
+                if confirmIncLudeDecimalPoint(numberString: firstNumber) {
                     firstNumber += number
                     numberLabel.text = firstNumber
                 }
@@ -145,9 +141,12 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
             case "0"..."9":
                 secondNumber += number
                 numberLabel.text = secondNumber
+            case ".":
+                if confirmIncLudeDecimalPoint(numberString: secondNumber) {
+                    secondNumber += number
+                    numberLabel.text = secondNumber
+                }
             case "=":
-                
-                
                 let firstNum = Double(firstNumber) ?? 0
                 let secondNum = Double(secondNumber) ?? 0
                 
@@ -168,6 +167,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
                 
             default: break
             }
+        }
+    }
+    
+    private func confirmIncLudeDecimalPoint(numberString: String) -> Bool {
+        if numberString.range(of: ".") != nil || numberString.count == 0 {
+            return true
+        } else {
+           return false
         }
     }
 }
