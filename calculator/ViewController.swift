@@ -117,7 +117,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
                 firstNumber += number
                 numberLabel.text = firstNumber
             case ".":
-                if firstNumber.range(of: ".") == nil {
+                if firstNumber.range(of: ".") != nil {
+                    return
+                } else if firstNumber.count == 0 {
+                    return
+                } else {
                     firstNumber += number
                     numberLabel.text = firstNumber
                 }
