@@ -41,6 +41,8 @@ class ViewController: UIViewController{
         caluculator.backgroundColor = .clear
         caluculator.contentInset = .init(top: 10, left: 14, bottom: 0, right: 14)
         
+        numberLabel.text = "0"
+        
         view.backgroundColor = .black
     }
     
@@ -111,7 +113,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         switch calculateStatus {
         case .none:
             switch number {
-            case "0"..."9":
+            case "0"..."9", ".":
                 firstNumber += number
                 numberLabel.text = firstNumber
             case "+":
@@ -131,8 +133,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
             
         case .plus, .minus, .multiplication, .division:
             switch number {
-            case "0"..."9":
-                secondNumber = number
+            case "0"..."9", ".":
+                secondNumber += number
                 numberLabel.text = secondNumber
             case "=":
                 
