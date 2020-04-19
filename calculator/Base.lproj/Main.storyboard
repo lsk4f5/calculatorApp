@@ -41,7 +41,7 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12345" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5n-h7-VK6">
-                                <rect key="frame" x="0.0" y="402" width="401" height="60"/>
+                                <rect key="frame" x="0.0" y="402" width="399" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="nsb-kA-BdG"/>
                                 </constraints>
@@ -52,7 +52,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="T5n-h7-VK6" secondAttribute="trailing" constant="13" id="4TF-fK-ZfK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="T5n-h7-VK6" secondAttribute="trailing" constant="15" id="4TF-fK-ZfK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="4jV-3u-fbm" secondAttribute="bottom" id="AN8-0R-N8G"/>
                             <constraint firstItem="4jV-3u-fbm" firstAttribute="top" secondItem="T5n-h7-VK6" secondAttribute="bottom" id="I7I-H6-ZRD"/>
                             <constraint firstItem="4jV-3u-fbm" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Jrp-NB-yMS"/>
