@@ -169,6 +169,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
                     resultString = result.replacingOccurrences(of: ".0", with: "")
                 }
                 numberLabel.text = resultString
+                firstNumber = ""
+                secondNumber = ""
+                
+                firstNumber += resultString ?? ""
+                calculateStatus = .none
                 
             case "C":
                 clear()
