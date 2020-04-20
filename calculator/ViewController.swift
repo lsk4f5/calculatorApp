@@ -150,18 +150,26 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
                 let firstNum = Double(firstNumber) ?? 0
                 let secondNum = Double(secondNumber) ?? 0
                 
+                var resultString: String?
+                
                 switch calculateStatus {
                 case .plus:
-                    numberLabel.text = String(firstNum + secondNum)
+                    resultString = String(firstNum + secondNum)
                 case .minus:
-                    numberLabel.text = String(firstNum - secondNum)
+                    resultString = String(firstNum - secondNum)
                 case .multiplication:
-                    numberLabel.text = String(firstNum * secondNum)
+                    resultString = String(firstNum * secondNum)
                 case .division:
-                    numberLabel.text = String(firstNum / secondNum)
+                    resultString = String(firstNum / secondNum)
                 default:
                     break
                 }
+                
+                if let result = resultString, result.hasSuffix(".0") {
+                    resultString = result.replacingOccurrences(of: ".0", with: "")
+                }
+                numberLabel.text = resultString
+                
             case "C":
                 clear()
                 
@@ -180,6 +188,16 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
 }
 
 class CaluculatorViewCell: UICollectionViewCell {
+    
+    override var isHighlighted: Bool {
+        didSet {
+            if isHighlighted {
+                self.numberLabel.alpha = 0.3
+            } else {
+                self.numberLabel.alpha = 1
+            }
+        }
+    }
     
     let numberLabel: UILabel = {
         let label = UILabel()
