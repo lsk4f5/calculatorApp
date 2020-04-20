@@ -146,6 +146,12 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
             case "0"..."9":
                 secondNumber += number
                 numberLabel.text = secondNumber
+                
+                if secondNumber.hasPrefix("0") {
+                    secondNumber = ""
+                }
+
+                
             case ".":
                 if confirmIncLudeDecimalPoint(numberString: secondNumber) {
                     secondNumber += number
