@@ -13,9 +13,8 @@
 		460190E2244CBE36006AF893 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460190E0244CBE36006AF893 /* Main.storyboard */; };
 		460190E4244CBE38006AF893 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 460190E3244CBE38006AF893 /* Assets.xcassets */; };
 		460190E7244CBE38006AF893 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 460190E5244CBE38006AF893 /* LaunchScreen.storyboard */; };
-		4690022025A17B6900039821 /* SecondCalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4690021F25A17B6900039821 /* SecondCalculatorViewController.swift */; };
-		4690022525A17B8800039821 /* ThirdCalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4690022425A17B8800039821 /* ThirdCalculatorViewController.swift */; };
-		4690022825A17BAF00039821 /* FourthCalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4690022725A17BAF00039821 /* FourthCalculatorViewController.swift */; };
+		465B0F3525C905D000539597 /* CalculateStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465B0F3425C905D000539597 /* CalculateStatus.swift */; };
+		465B0F3925C9064300539597 /* CaluculatorViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465B0F3725C9064300539597 /* CaluculatorViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,9 +26,8 @@
 		460190E3244CBE38006AF893 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		460190E6244CBE38006AF893 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		460190E8244CBE38006AF893 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4690021F25A17B6900039821 /* SecondCalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondCalculatorViewController.swift; sourceTree = "<group>"; };
-		4690022425A17B8800039821 /* ThirdCalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdCalculatorViewController.swift; sourceTree = "<group>"; };
-		4690022725A17BAF00039821 /* FourthCalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthCalculatorViewController.swift; sourceTree = "<group>"; };
+		465B0F3425C905D000539597 /* CalculateStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateStatus.swift; sourceTree = "<group>"; };
+		465B0F3725C9064300539597 /* CaluculatorViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaluculatorViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,9 +62,8 @@
 			children = (
 				4690021E25A17B4600039821 /* App */,
 				460190DE244CBE36006AF893 /* ViewController.swift */,
-				4690021F25A17B6900039821 /* SecondCalculatorViewController.swift */,
-				4690022425A17B8800039821 /* ThirdCalculatorViewController.swift */,
-				4690022725A17BAF00039821 /* FourthCalculatorViewController.swift */,
+				465B0F3725C9064300539597 /* CaluculatorViewCell.swift */,
+				465B0F3425C905D000539597 /* CalculateStatus.swift */,
 				460190E0244CBE36006AF893 /* Main.storyboard */,
 				460190E3244CBE38006AF893 /* Assets.xcassets */,
 				460190E5244CBE38006AF893 /* LaunchScreen.storyboard */,
@@ -155,11 +152,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4690022825A17BAF00039821 /* FourthCalculatorViewController.swift in Sources */,
-				4690022025A17B6900039821 /* SecondCalculatorViewController.swift in Sources */,
 				460190DF244CBE36006AF893 /* ViewController.swift in Sources */,
 				460190DB244CBE36006AF893 /* AppDelegate.swift in Sources */,
-				4690022525A17B8800039821 /* ThirdCalculatorViewController.swift in Sources */,
+				465B0F3525C905D000539597 /* CalculateStatus.swift in Sources */,
+				465B0F3925C9064300539597 /* CaluculatorViewCell.swift in Sources */,
 				460190DD244CBE36006AF893 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

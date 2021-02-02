@@ -9,15 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController{
-    
-    enum CalculateStatus {
-        case none, plus, minus, multiplication, division
-    }
     var firstNumber = ""
     var secondNumber = ""
-    var calculateStatus: CalculateStatus = .none
-    
-    
+    var calculateStatus: CalculateStatus.Item = .none
     let numbers = [
         ["C","%","$","÷"],
         ["7","8","9","×"],
@@ -25,27 +19,28 @@ class ViewController: UIViewController{
         ["1","2","3","+"],
         ["0",".","="],
     ]
-    
 
-    @IBOutlet weak var caluculator: UICollectionView!
-    @IBOutlet weak var numberLabel: UILabel!
+    @IBOutlet private weak var caluculator: UICollectionView! {
+        didSet {
+            caluculator.delegate = self
+            caluculator.dataSource = self
+            caluculator.register(CaluculatorViewCell.self, forCellWithReuseIdentifier: "cellID")
+            calculatorHeight.constant = view.frame.width * 1.4
+            caluculator.backgroundColor = .clear
+            caluculator.contentInset = .init(top: 10, left: 14, bottom: 0, right: 14)
+        }
+    }
+    @IBOutlet private weak var numberLabel: UILabel! {
+        didSet {
+            numberLabel.text = "0"
+        }
+    }
     @IBOutlet weak var calculatorHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        caluculator.delegate = self
-        caluculator.dataSource = self
-        caluculator.register(CaluculatorViewCell.self, forCellWithReuseIdentifier: "cellID")
-        calculatorHeight.constant = view.frame.width * 1.4
-        caluculator.backgroundColor = .clear
-        caluculator.contentInset = .init(top: 10, left: 14, bottom: 0, right: 14)
-        
-        numberLabel.text = "0"
-        
         view.backgroundColor = .black
     }
-    
     
     func clear() {
         firstNumber = ""
@@ -56,7 +51,7 @@ class ViewController: UIViewController{
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
-    UICollectionViewDelegateFlowLayout {
+                          UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return numbers.count
@@ -67,12 +62,12 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:
-        UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+                            UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return .init(width: collectionView.frame.width, height: 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout CollectionViewLayout:
-        UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+                            UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var width: CGFloat = 0
         width = ((collectionView.frame.width - 10) - 14 * 5) / 4
         let height = width
@@ -84,27 +79,26 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:
-        UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+                            UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 14
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) ->
-        UICollectionViewCell {
-            let cell = caluculator.dequeueReusableCell(withReuseIdentifier: "cellID", for:
-                indexPath) as! CaluculatorViewCell
-            cell.numberLabel.text = numbers[indexPath.section][indexPath.row]
-            
-            numbers[indexPath.section][indexPath.row].forEach { (numberString) in
-                if "0"..."9" ~= numberString || numberString.description == "." {
-                    cell.numberLabel.backgroundColor = .darkGray
-                } else if numberString == "C" || numberString == "$" || numberString == "%" {
-                    cell.numberLabel.backgroundColor = UIColor.init(white: 1, alpha: 0.7)
-                    cell.numberLabel.textColor = .black
-                }
-                
+    UICollectionViewCell {
+        let cell = caluculator.dequeueReusableCell(withReuseIdentifier: "cellID", for:
+                                                    indexPath) as! CaluculatorViewCell
+        cell.numberLabel.text = numbers[indexPath.section][indexPath.row]
+
+        numbers[indexPath.section][indexPath.row].forEach { (numberString) in
+            if "0"..."9" ~= numberString || numberString.description == "." {
+                cell.numberLabel.backgroundColor = .darkGray
+            } else if numberString == "C" || numberString == "$" || numberString == "%" {
+                cell.numberLabel.backgroundColor = UIColor.init(white: 1, alpha: 0.7)
+                cell.numberLabel.textColor = .black
             }
-            
-            return cell
+        }
+
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -151,7 +145,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
                     secondNumber = ""
                 }
 
-                
             case ".":
                 if confirmIncLudeDecimalPoint(numberString: secondNumber) {
                     secondNumber += number
@@ -160,7 +153,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
             case "=":
                 let firstNum = Double(firstNumber) ?? 0
                 let secondNum = Double(secondNumber) ?? 0
-                
                 var resultString: String?
                 
                 switch calculateStatus {
@@ -182,7 +174,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
                 numberLabel.text = resultString
                 firstNumber = ""
                 secondNumber = ""
-                
                 firstNumber += resultString ?? ""
                 calculateStatus = .none
                 
@@ -198,45 +189,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         if numberString.range(of: ".") != nil || numberString.count == 0 {
             return true
         } else {
-           return false
+            return false
         }
-    }
-}
-
-class CaluculatorViewCell: UICollectionViewCell {
-    
-    override var isHighlighted: Bool {
-        didSet {
-            if isHighlighted {
-                self.numberLabel.alpha = 0.3
-            } else {
-                self.numberLabel.alpha = 1
-            }
-        }
-    }
-    
-    let numberLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.textAlignment = .center
-        label.text = "1"
-        label.font = .boldSystemFont(ofSize: 32)
-        label.clipsToBounds = true
-        label.backgroundColor = .orange
-        return label
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addSubview(numberLabel)
-        //            backgroundColor = .black
-        
-        numberLabel.frame.size = self.frame.size
-        numberLabel.layer.cornerRadius = self.frame.height / 2
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 
